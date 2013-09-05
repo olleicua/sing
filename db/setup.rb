@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'active_record'
-require 'sqlite3'
-require './create.rb'
+require('./connect.rb')
 
 class Track < ActiveRecord::Base
   belongs_to :song

@@ -1,8 +1,8 @@
-ActiveRecord::Base.establish_connection(:adapter  => 'sqlite3',
-                                        :database => 'test.db')
+require('./connect.rb')
 
 ActiveRecord::Schema.define do
   create_table :tracks do |t|
+    t.column :file, :string
     t.column :track_number, :integer
     t.column :original, :boolean
     t.column :bytes, :integer
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define do
   end
   
   create_table :artists do |t|
-    t.column :name
-    t.column :stage_name
+    t.column :name, :string
+    t.column :stage_name, :string
     t.column :notes, :text
     
     t.timestamps
@@ -40,12 +40,12 @@ ActiveRecord::Schema.define do
     t.column :name, :string
     t.column :attachments, :text
     
-    t.column :published_at
+    t.column :published_at, :date
     t.timestamps
   end
   
   create_table :performances do |t|
-    t.column :role, :string
+    t.column :role, :text
     
     t.column :track_id, :integer
     t.column :performer_id, :integer
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define do
   end
   
   create_table :compositions do |t|
-    t.column :role, :string
+    t.column :role, :text
     
     t.column :song_id, :integer
     t.column :composer_id, :integer

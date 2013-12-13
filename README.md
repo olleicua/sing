@@ -17,4 +17,10 @@ console
 
 If you use [pry](http://pryrepl.org/) then you can add the following to your
 .pryrc file and then when you run pry from the sing's source directory it will load
-up active record.
+up active record:
+
+```ruby
+singdb = File.join Dir.getwd, 'db/setup.rb'
+sing = File.join Dir.getwd, 'sing'
+load sing if File.exist?(sing) and File.exist?(singdb) and ENV['SKIP_SING'].nil?
+```

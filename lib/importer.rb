@@ -1,4 +1,4 @@
-require singroot 'lib/file.rb'
+require singroot 'lib/file_import.rb'
 
 class Importer; end
 

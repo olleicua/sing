@@ -1,16 +1,25 @@
 #!/usr/bin/env ruby
 
-require('./db/setup.rb')
-require('./lib/importer.rb')
+SingRoot = File.dirname __FILE__
 
-case ARGV[0]
-when 'import'
+def singroot file
+  File.join SingRoot, file
+end
 
-  if File.directory(ARGV[1])
-    Importer.run(ARGV[1])
+require singroot 'db/setup.rb'
+
+unless defined? Pry
+  case ARGV[0]
+  when 'init'
+    require singroot 'db/create.rb'
+  when 'import'
+    if File.directory(ARGV[1])
+      require singroot 'lib/importer.rb'
+      Importer.run(ARGV[1])
+    else
+      puts 'usage: sing import <directory>'
+    end
   else
-    puts 'usage: sing import <directory>'
+    puts 'usage: sing <command>'
   end
-else
-  puts 'usage: sing <command> <args>'
 end

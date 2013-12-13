@@ -1,4 +1,5 @@
-require('./connect.rb')
+require singroot 'db/connect.rb'
+
 
 class Track < ActiveRecord::Base
   belongs_to :song

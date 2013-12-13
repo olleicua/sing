@@ -1,5 +1,3 @@
-require('./connect.rb')
-
 ActiveRecord::Schema.define do
   create_table :tracks do |t|
     t.column :file, :string

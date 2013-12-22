@@ -1,0 +1,6 @@
+(sing) usage: sing <command> [options]
+(sing) 
+(sing) Commands:
+(sing)   init    Setup the sqlite3 database
+(sing)   import  import music files from a directory
+(sing)   help    this message

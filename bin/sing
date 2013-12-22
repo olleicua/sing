@@ -2,15 +2,25 @@
 
 require_relative '../sing.rb'
 
+# TODO: use Trollop here
+
 case ARGV[0]
 when 'init'
-  require singroot 'db/create.rb'
-when 'import'
-  if File.directory(ARGV[1])
-    Importer.run(ARGV[1])
+  File.delete singroot 'db/music.db' if ARGV.any?{|a| a =~ /^-.*f/}
+  
+  if File.exists? singroot 'db/music.db'
+    puts '(sing) database already exists (use -f flag to reset the database)'
   else
-    puts 'usage: sing import <directory>'
+    require singroot 'db/create.rb'
   end
+when 'import'
+  if File.directory?(ARGV[1].to_s)
+    Importer.run(ARGV[1].to_s)
+  else
+    puts '(sing) usage: sing import <directory>'
+  end
+when 'help'
+  puts open(singroot 'help').read
 else
-  puts 'usage: sing <command>'
+  puts '(sing) usage: sing <command>'
 end

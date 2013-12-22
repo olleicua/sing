@@ -21,6 +21,6 @@ up active record:
 
 ```ruby
 singdb = File.join Dir.getwd, 'db/setup.rb'
-sing = File.join Dir.getwd, 'sing'
+sing = File.join Dir.getwd, 'sing.rb'
 load sing if File.exist?(sing) and File.exist?(singdb) and ENV['SKIP_SING'].nil?
 ```

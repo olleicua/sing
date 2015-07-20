@@ -1,4 +1,5 @@
 require singroot 'lib/file_import.rb'
+require singroot 'lib/editor.rb'
 
 class Importer; end
 
@@ -9,6 +10,7 @@ class << Importer
   def run directory
     files(directory).each do |file|
       import file
+      break
     end
   end
   
@@ -36,7 +38,7 @@ class << Importer
                          :original => nil,
                          :bytes => file.fileSize,
                          :seconds => file.duration)
-    
-    # TODO: implement me
+    editor = Editor.new track
+    editor.display
   end
 end
